@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法 | Alobef</title>
+<link rel="shortcut icon" href="/Users/alobe/Documents/Gridea/output/favicon.ico?v=1555576501087">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="/Users/alobe/Documents/Gridea/output/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="/Users/alobe/Documents/Gridea/output">
+  <img class="avatar" src="/Users/alobe/Documents/Gridea/output/images/avatar.png?v=1555576501087" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output//index.html" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/archives/index.html" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/tags/index.html" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/post/about/index.html" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-26 ·
+              </time>
+              
+                <a href="/Users/alobe/Documents/Gridea/output/tag/pQSOOMj5i/index.html" class="post-tags">
+                  # Webpack
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <h3 id="现在的一些工具库的依赖库可能是通过es6语法进行编写的当我们还是使用uglifyjs-webpack-plugin一个webpack-js代码编译压缩js代码的插件就会造成编译不通过的问题">现在的一些工具库的依赖库可能是通过es6语法进行编写的，当我们还是使用uglifyjs-webpack-plugin（一个webpack JS代码编译压缩js代码的插件），就会造成编译不通过的问题</h3>
+<h3 id="举个例子像在react应用中常用于解析request的query参数的query-string库它的一个依赖库strict-uri-encode就采用了es6的写法其源码如下">举个例子，像在react应用中常用于解析request的query参数的<a href="https://www.npmjs.com/package/query-string">query-string库</a>，它的一个依赖库<a href="https://www.npmjs.com/package/strict-uri-encode">strict-uri-encode</a>就采用了es6的写法，其源码如下：</h3>
+<pre><code>'use strict';
+module.exports = str =&gt; encodeURIComponent(str).replace(/[!'()*]/g, x =&gt; `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
+</code></pre>
+<h3 id="很明显是用了es6里十分常见的箭头函数但如果还是使用uglifyjs-webpack-plugin进行js代码压缩的话很容易出现下面的错误">很明显是用了es6里十分常见的箭头函数，但如果还是使用uglifyjs-webpack-plugin进行js代码压缩的话，很容易出现下面的错误</h3>
+<pre><code>ERROR in index.884a774e80700a169db9.js from UglifyJs
+Unexpected token: operator (&gt;) [index.884a774e80700a169db9.js:75386,22]
+</code></pre>
+<h3 id="具体的错误详情讨论可以查看github-issue">具体的错误详情讨论可以查看<a href="https://github.com/kevva/strict-uri-encode/issues/7">github issue</a></h3>
+<h3 id="一开始我先查看uglifyjs-webpack-plugin的官方配置文档发现uglifyoptions有ecma这个配置选项用于支持支持不同版本的ecmascript的编译-然而实践中发现这个东西并没有什么卵用估计是相关功能还未完全完成最新版本的都不行你说你写在官方文档作甚">一开始我先查看uglifyjs-webpack-plugin的官方配置文档,发现<a href="https://www.webpackjs.com/plugins/uglifyjs-webpack-plugin/#uglifyoptions">uglifyOptions</a>有ecma这个配置选项，用于支持支持不同版本的ECMAScript的编译。然而实践中发现这个东西并没有什么卵用，估计是相关功能还未完全完成（最新版本的都不行，你说你写在官方文档作甚😂）</h3>
+<h3 id="然后尝试了很多种办法比如将这个库加到babel-loader的includes中-使用uglify-es-webpack-plugin等结果都不是很理想">然后尝试了很多种办法，比如将这个库加到babel-loader的includes中、使用uglify-es-webpack-plugin等结果都不是很理想</h3>
+<h3 id="最后找到terser-webpack-plugin这个webpack插件它的配置和uglify-webpack-plugin的配置几乎一模一样还是相似的tersetoptions的ecma配置项然后打包成功">最后找到<a href="https://www.npmjs.com/package/terser-webpack-plugin">terser-webpack-plugin</a>这个webpack插件，它的配置和uglify-webpack-plugin的配置几乎一模一样，还是相似的tersetOptions的ecma配置项，然后打包成功🎉</h3>
+<h3 id="terser-webpack-plugin具体的使用可以查看这里">terser-webpack-plugin具体的使用可以查看<a href="https://www.npmjs.com/package/terser-webpack-plugin">这里</a></h3>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="/Users/alobe/Documents/Gridea/output/post/ant-design-dong-tai-dao-ru-de-zhu-yi-shi-xiang/index.html">
+              <h3 class="post-title">
+                ant design 动态导入的注意事项
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

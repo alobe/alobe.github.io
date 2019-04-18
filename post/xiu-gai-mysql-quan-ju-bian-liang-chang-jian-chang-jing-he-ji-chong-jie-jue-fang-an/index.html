@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>修改MySQL全局变量常见场景和几种解决方案 | Alobef</title>
+<link rel="shortcut icon" href="/Users/alobe/Documents/Gridea/output/favicon.ico?v=1555576501087">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="/Users/alobe/Documents/Gridea/output/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="/Users/alobe/Documents/Gridea/output">
+  <img class="avatar" src="/Users/alobe/Documents/Gridea/output/images/avatar.png?v=1555576501087" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output//index.html" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/archives/index.html" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/tags/index.html" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/Users/alobe/Documents/Gridea/output/post/about/index.html" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              修改MySQL全局变量常见场景和几种解决方案
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2018-04-09 ·
+              </time>
+              
+                <a href="/Users/alobe/Documents/Gridea/output/tag/hXgyCNFyf/index.html" class="post-tags">
+                  # Mysql
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <h2 id="举个十分常见的例子比如mysql数据库表区分大小写敏感配置即lower_case_table_names在windows和mac-osx系统下的默认值是1即数据库表大小写区分不敏感然而在linux系统下默认值是为0即大小写敏感">举个十分常见的例子，比如MySQL数据库表区分大小写敏感配置，即lower_case_table_names,在windows和mac OSX系统下的默认值是1，即数据库表大小写区分不敏感，然而在linux系统下默认值是为0，即大小写敏感。</h2>
+<h2 id="相对常见的修改方式有以下两种">相对常见的修改方式有以下两种</h2>
+<h3 id="命令行进入mysql或者是常见的mysql连接工具比如navicat-dbeaver-sequel-pro的query页面首先先查看该值详情">命令行进入MySQL或者是常见的MySQL连接工具比如Navicat、DBeaver、Sequel Pro的query页面，首先先查看该值详情</h3>
+<pre><code>show variables like &quot;%lower_case_table_names%&quot;
+</code></pre>
+<h3 id="假设显示的值为lower_case_table_names0">,假设显示的值为<code>lower_case_table_names=0</code></h3>
+<h3 id="解决方法">解决方法</h3>
+<h4 id="1-直接执行命令">1、直接执行命令</h4>
+<pre><code>set global variables lower_case_table_names=1
+</code></pre>
+<h4 id="2-修改mysql的配置文件mycnf在mysqld节点后面添加">2、修改MySQL的配置文件my.cnf，在<code>[mysqld]</code>节点后面添加</h4>
+<pre><code>lower_case_table_names=1
+</code></pre>
+<h3 id="然后重启mysql服务即可">,然后重启MySQL服务即可</h3>
+<h2 id="进阶内容">【进阶内容】</h2>
+<h3 id="假如mysql是本地通过docker镜像创建的或者是线上的docker镜像服务比如阿里云的mysql镜像应用">假如MySQL是本地通过docker镜像创建的，或者是线上的docker镜像服务，比如阿里云的MySQL镜像应用。</h3>
+<h3 id="针对本地的mysql镜像远端应该也行只要能连接上远端的docker镜像执行命令">针对本地的MySQL镜像（远端应该也行，只要能连接上远端的docker镜像），执行命令</h3>
+<pre><code>docker exec -it 镜像名称 /bin/bash
+</code></pre>
+<h3 id="镜像名称可以通过docker-ps来获取使用系统自带的bash工具进入镜像然后重复上面的解决方法一即">(镜像名称可以通过<code>docker ps</code>来获取，使用系统自带的bash工具进入镜像),然后重复上面的解决方法一，即</h3>
+<pre><code>set global variables lower_case_table_names
+</code></pre>
+<h3 id="对于解决方法二操作稍微比较复杂我就只讲下思路首先先看镜像内有没有安装vim等编辑工具没有则安装可通过命令">。对于解决方法二，操作稍微比较复杂，我就只讲下思路，首先先看镜像内有没有安装vim等编辑工具，没有则安装，可通过命令</h3>
+<pre><code>apt-get update &amp; apt-get install vim
+</code></pre>
+<h3 id="然后通过vim打开对应的mysql的配置文件mycnf修改保存即可">,然后通过vim打开对应的MySQL的配置文件my.cnf修改保存即可</h3>
+<h2 id="其实还有更好的方法就是修改mysql镜像的dockerfile直接在mysqld安装命令后添加一条命令">其实还有更好的方法就是，修改MySQL镜像的dockerfile，直接在mysqld安装命令后添加一条命令</h2>
+<pre><code>CMD mysqld --lower_case_table_names=1
+</code></pre>
+<h3 id="即可或者是docker-composeyml配置文件中的mysql镜像配置中添加">即可，或者是docker-compose.yml配置文件中的MySQL镜像配置中添加</h3>
+<pre><code>commend:
+  - &quot;--lower_case_table_names=1&quot;
+</code></pre>
+<h2 id="然后如果是通过阿里云官方mysql镜像构建的服务应用只需要对应用的容器配置中的command添加mysqld-lower_case_table_names1">然后如果是通过阿里云官方MySQL镜像构建的服务应用，只需要对应用的容器配置中的command添加<code>[&quot;mysqld&quot;, &quot;--lower_case_table_names=1&quot;]</code></h2>
+<h2 id="最后重启mysql镜像应用或服务">最后重启MySQL镜像应用或服务</h2>
+
+            </div>
+          </article>
+        </div>
+    
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

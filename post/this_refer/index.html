@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>this关键字探究 | Alobef</title>
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1555734423306">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://alobe.github.io/">
+  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1555734423306" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    落李花飞显此景，漾文鱼跃衬远波
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              this关键字探究
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2018-08-20 ·
+              </time>
+              
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
+                </a>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('data:image/png;base64,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')">
+              </div>
+            
+            <div class="post-content">
+              <p>js作用域嵌套</p>
+<blockquote>
+<p>当一个块或函数嵌套在另一个块或函数中时，就发生了作用域的嵌套，进而形成了一条作用域链。因此，在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量， 或抵达最外层的作用域(也就是全局作用域)为止。</p>
+</blockquote>
+<p>bind函数问题：</p>
+<blockquote>
+<p><strong>定义</strong>：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数</p>
+<p>多次bind是无效的，原因是因为目标函数绑定的对象只会在第一次调用时绑定，之后都是对上次绑定的函数进行对象的绑定</p>
+</blockquote>
+<p>this关键字</p>
+<blockquote>
+<p><code>this</code>是在运行时（<code>runtime</code>）进行绑定的，<strong>而不是在编写时绑定的</strong>，它的上下文（对象）取决于函数调用时的各种条件。<code>this</code>的绑定和函数声明的位置没有任何关系，<strong>只取决于函数的调用方式</strong>。</p>
+<p>当一个函数被调用时，会创建一个活动记录(有时候也称为执行上下文)。这个记录会包含函数在哪里被调用(调用栈)、函数的调用方法、传入的参数等信息。<strong>this就是记录的其中一个属性</strong>，会在函数执行的过程中用到。（ PS:所以<code>this</code>并不等价于执行上下文）</p>
+</blockquote>
+<h4 id="this的绑定规则">this的绑定规则</h4>
+<ol>
+<li>
+<h4 id="默认绑定最常见的表现为独立函数调用this默认指向window注意在严格模式下this不再默认指向全局而是undefined">默认绑定，最常见的表现为独立函数调用，this默认指向window（<strong>注意：在严格模式下this不再默认指向全局，而是undefined</strong>）</h4>
+</li>
+<li>
+<p>隐式绑定，函数被某个对象拥有或者包含，也就是函数被作为对象的属性所引用，例如<code>obj.func()</code>，此时<code>this</code>会绑定到该对象上</p>
+<blockquote>
+<p><strong>隐式丢失</strong>，大部分的<code>this</code>绑定问题就是被“隐式绑定”的<strong>函数</strong>会丢失绑定对象，也就是说它会应用“默认绑定”，从而把<code>this</code>绑定到<code>Window</code>或<code>undefined</code>上，最常见的情况就是<strong>把对象方法作为回调函数进行传递时</strong> （比如<strong>setTimeout</strong>、<strong>setInterval</strong>，其它能改变作用域的有<strong>eval</strong>、<strong>with</strong>）</p>
+</blockquote>
+</li>
+<li>
+<p>显式绑定，通过<code>apply</code>、<code>call</code>、<code>bind</code>方法来显示地修改<code>this</code>的指向</p>
+</li>
+<li>
+<p>new 绑定，即获取对象属性时</p>
+</li>
+</ol>
+<p>ES6中有一种特殊的函数类型：<strong>箭头函数</strong>（不使用 this 的四种标准规则，而是根据外层&lt;函数或者全局&gt;作用域来决定 this，而传统的 this 与函数作用域没有任何关系,它只与调用位置的上下文对象有关)</p>
+<blockquote>
+<ul>
+<li>箭头函数最常用于回调函数中，例如事件处理器或者定时器.</li>
+<li>箭头函数可以像<code>bind</code> 一样确保函数的<code>this</code>被绑定到指定对象</li>
+<li>箭头函数用更常见的词法作用域取代了传统的<code>this</code>机制。</li>
+</ul>
+</blockquote>
+<h4 id="深入箭头函数">深入箭头函数</h4>
+<blockquote>
+<p>JS 类中的箭头函数只是语法糖，在编译之后，它将出现在构造函数中，在实例化时创建并分配</p>
+<p>在使用箭头函数（而不是手动 bind）的情况下，每次使用组件时都会创建一个全新的函数，这会对应用程序的性能和内存使用产生负面影响。</p>
+</blockquote>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://alobe.github.io//post/vscode_shortcut">
+              <h3 class="post-title">
+                vs code快捷键相关
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  All rights reserved @Alobe
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

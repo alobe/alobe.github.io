@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>常用函数的简易实现以及相关知识点 | Alobef</title>
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1556076445460">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://alobe.github.io/">
+  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1556076445460" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    落李花飞显此景，漾文鱼跃衬远波
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              常用函数的简易实现以及相关知识点
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2018-10-24 ·
+              </time>
+              
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
+                </a>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('data:image/jpeg;base64,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')">
+              </div>
+            
+            <div class="post-content">
+              <ol>
+<li>LHS和RHS的含义：赋值操作的左侧和右侧，LHS操作目标，RHS操作源，有对应的查询操作</li>
+<li>IIFE：立即执行函数（Immediately Invoked Function Expression）</li>
+<li>声明提升，函数声明优先提升，变量声明次之</li>
+<li>主要类型：string、boolean、number、object、null、undefined，内置对象：String、Boolean、Number、Object、Function、Array、Date、RegExp、Error</li>
+<li>原型和原型链
+<ul>
+<li>所有的函数，都有一个prototype属性</li>
+<li>所有的引用类型（数组、对象、函数），都有一个__proto__属性（也是一个对象），__proto__属性值指向它的构造函数的prototype属性值
+注意：ES6的箭头函数没有prototype属性，但是有__proto__属性
+原型链：当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的proto（即它的构造函数的prototype）中寻找，重复这个过程，这个链状的结构就叫原型链</li>
+</ul>
+</li>
+<li>箭头函数和function定义的函数区别：
+function函数：this的指向取决于当前的调用环境，变量提升优先级最高
+箭头函数：this的指向一直指向定义其的外部环境，不能用于构造函数即new，变量提升优先级依赖于赋值到的定义变量，所以箭头函数一定要定义先于调用</li>
+</ol>
+<p>常见的实现案例</p>
+<p>—&gt; 实现call</p>
+<pre><code>Function.prototype.myCall = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error!!')
+  
+  // 设置上下文，默认为window
+  context = context || window
+  // 备份默认的fn
+  const { fn } = context
+  
+  // 将函数赋值到对象属性上，调用时this就会绑定到对象上
+  context.fn = this
+  const result = context.fn(...([...arguments].slice(1)))
+  
+  // 恢复对象
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现apply</p>
+<pre><code>Function.prototype.myApply = function (context) {
+	if (typeof this !== 'function') throw new TypeError('Function Type Error')
+  
+  context = context || window
+  const { fn } = context
+  context.fn = this
+	const result = arguments[1] instanceof Array ? context.fn(...arguments[1]) : context.fn()
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现bind</p>
+<pre><code>Function.prototype.myBind = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error')
+
+  const that = this
+  const preArgs = [...arguments].slice(1)
+  return function F () {
+    return this instanceof F ? new that(...preArgs, ...arguments) : that.apply(context, [...preArgs, ...arguments])
+  }
+}
+</code></pre>
+<p>—&gt; 实现深拷贝</p>
+<pre><code>function deepClone (src) {
+  let result = null
+  // 源对象为数组
+  if (src instanceof Array) {
+    result = []
+    for (let val of src) result.push(deepClone(val))
+    return result
+  // 源对象为对象
+  } else if (src instanceof Object) {
+    result = {}
+    const keys = Reflect.ownKeys(src)
+    for (let key of keys) result[key] = deepClone(src[key])
+    return result
+  } else return src
+}
+</code></pre>
+<p>—&gt; 实现instanceof</p>
+<pre><code>function myInstanceof (val, type) {
+  const prototype = type.prototype
+  while (val = val.__proto__) {
+    if (val === prototype) return true
+  }
+  return false
+}
+</code></pre>
+<p>—&gt; 实现事件的订阅发布</p>
+<pre><code>class Event {
+  constructor () {
+    this._map = {}
+  }
+  // 订阅
+  subscribe (type, cb) {
+    this._map[type] = this._map[type] || []
+    const cbs = this._map[type]
+    if (!~cbs.indexOf(cb)) cbs.push(cb)
+    return this
+  }
+  // 触发
+  trigger (type, ...args) {
+    if (this._map[type]) this._map[type].map(cb =&gt; cb(...args))
+    return this
+  }
+  // 移除
+  remove (type, cb) {
+    let cbs = this._map[type]
+    if (cbs) {
+      const index = cbs.indexOf(cb)
+      if (index + 1) cbs.slice(index, 1)
+      else cbs = null
+    }
+    return this
+  }
+}
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://alobe.github.io//post/this_refer">
+              <h3 class="post-title">
+                this关键字探究
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  All rights reserved @Alobe
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

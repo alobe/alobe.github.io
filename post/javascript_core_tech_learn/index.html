@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>《JavaScript核心技术开发解密》知识点记录 | Alobef</title>
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1556510419951">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://alobe.github.io/">
+  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1556510419951" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    落李花飞显此景，漾文鱼跃衬远波
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              《JavaScript核心技术开发解密》知识点记录
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-04-29 ·
+              </time>
+              
+                <a href="https://alobe.github.io//tag/H6B9GeCeb" class="post-tags">
+                  # 书籍阅读
+                </a>
+              
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
+                </a>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('http://g.search2.alicdn.com/img/bao/uploaded/i4/i1/2599440650/O1CN01HpdYF71GfjvZEJXT0_!!0-item_pic.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <p>运行环境&lt;执行上下文&gt;：</p>
+<p>-&gt; 全局环境：代码运行首先进入全局环境，也是最外层的作用域</p>
+<p>-&gt; 函数环境：当函数被调用执行时创建的上下文环境，即函数作用域</p>
+<p>-&gt; eval环境：todo</p>
+<p>变量对象&lt;VO，Variable Object&gt;：包含的内容有：函数的参数对象arguments、当前上下文的函数声明（function声明的函数）、当前上下文的所有变量声明</p>
+<p>活动对象&lt;AO，Activation Object&gt;：处于函数调用栈栈顶的变量对象VO，即上下文对象处于激活状态，除了包含变量对象的全部属性，并且属性都完成了赋值，还包含this的指向</p>
+<p>举例：</p>
+<pre><code>function test () {
+  console.log(a)
+  console.log(foo())
+  
+  var a = 1
+  function foo () {
+    return 2
+  }
+}
+
+test()
+
+// 过程解析
+// 创建过程
+testEC = {					// 创建上下文对象
+  VO: {},						// 变量对象
+  scopeChain: [],		// 作用域链，包含上下文变量对象，比如[VO(foo), VO(test), VO(global)]
+  this: {}
+}
+
+VO = {										// 变量对象赋值
+  arguments: {...},				// 函数参数对象
+	foo: &lt;foo reference&gt;,		// 内部函数声明
+	a: undefined						// 内部变量 
+}
+
+// 执行阶段
+VO -&gt; AO
+AO = {
+  arguments: {},
+  foo: &lt;foo reference&gt;,
+  a: 1,
+  this: Window
+}
+</code></pre>
+<p>作用域：</p>
+<p>常见的有全局作用域和函数作用域</p>
+<p>全局作用域特性：声明的变量和函数全局都能访问</p>
+<p>函数作用域特性：声明的变量和方法只能被下层子作用域访问</p>
+<p>注意：单独的‘{}’不会产生新的作用域，常见的像for、while、switch等，但是可以模拟块级作用域，通过使用立即执行函数的方式包裹代码块来实现</p>
+<pre><code>(function () {
+  // 代码块
+})()
+</code></pre>
+<p>作用域链：</p>
+<p>由当前执行环境与上层执行环境的一系列变量对象组成，保证了当前执行环境对符合访问权限的变量和函数的有序访问</p>
+<p>闭包：</p>
+<p>概念：一种特殊的对象（chrome浏览器调试工具里可以看到，Closure()来表示），由执行上下文(A)以及在该执行上下文中创建的函数(B)，当B执行时，如果访问了A中的变量对象，则会产生闭包</p>
+<p>MDN中的定义：闭包是指这样的作用域，它包含了一个函数，这个函数可以调用被这个作用域所封闭的变量、函数或者闭包的内容。</p>
+<p>catch：闭包会导致函数的作用域链发生变化吗？</p>
+<p>不会，虽然作用域链是在代码执行时才生成的，但是作用域规则在代码编译时就已经确定了并且不会在执行时发生改变</p>
+<p>应用</p>
+<p>单例模式（即只有一个实例，使用立即执行函数创造一个函数作用域与外界隔离）</p>
+<p>进一步的就是模块化（每个单例就是一个模块）</p>
+<p>模拟私有变量</p>
+<p>异步服务调用</p>
+<p>高阶函数，像柯里化的函数，偏函数</p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://alobe.github.io//post/webpack4_compile_es6">
+              <h3 class="post-title">
+                针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  All rights reserved @Alobe
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

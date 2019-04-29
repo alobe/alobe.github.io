@@ -1,0 +1,339 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>常用函数的简易实现以及相关知识点 | Alobef</title>
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1556510419951">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://alobe.github.io/">
+  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1556510419951" alt="">
+  </a>
+  <h1 class="site-title">
+    Alobef
+  </h1>
+  <p class="site-description">
+    落李花飞显此景，漾文鱼跃衬远波
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/alobe" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/alobewb" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+        <a href="https://weibo.com/3866646670/profile" target="_blank">
+          <i class="fab fa-weibo"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              常用函数的简易实现以及相关知识点
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2018-10-24 ·
+              </time>
+              
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
+                </a>
+              
+            </div>
+            
+              <div class="post-feature-image" style="background-image: url('https://static1.squarespace.com/static/58d20c79725e25b221549193/t/5aaa1da871c10b1937790961/1521098157324/js.jpg?format=1500w')">
+              </div>
+            
+            <div class="post-content">
+              <ol>
+<li>LHS和RHS的含义：赋值操作的左侧和右侧，LHS操作目标，RHS操作源，有对应的查询操作</li>
+<li>IIFE：立即执行函数（Immediately Invoked Function Expression）</li>
+<li>声明提升，函数声明优先提升，变量声明次之</li>
+<li>主要类型：string、boolean、number、object、null、undefined，内置对象：String、Boolean、Number、Object、Function、Array、Date、RegExp、Error</li>
+<li>原型和原型链
+<ul>
+<li>所有的函数，都有一个prototype属性</li>
+<li>所有的引用类型（数组、对象、函数），都有一个__proto__属性（也是一个对象），__proto__属性值指向它的构造函数的prototype属性值
+注意：ES6的箭头函数没有prototype属性，但是有__proto__属性
+原型链：当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的proto（即它的构造函数的prototype）中寻找，重复这个过程，这个链状的结构就叫原型链</li>
+</ul>
+</li>
+<li>箭头函数和function定义的函数区别：
+function函数：this的指向取决于当前的调用环境，变量提升优先级最高
+箭头函数：this的指向一直指向定义其的外部环境，不可使用arguments对象、yield命令，因为没有自己的this从而无法调用call、apply以及没有prototype属性（new命令执行时需要将prototype属性赋值给新对象的__ proto __）所以不能用于构造函数即new，变量提升优先级依赖于赋值到的定义变量，所以箭头函数一定要定义先于调用</li>
+</ol>
+<p>常见的实现案例</p>
+<p>—&gt; 实现new</p>
+<pre><code>function New (func, ...args) {
+  if (!func.prototype) throw new TypeError('wrong func')
+  let obj = {}
+  obj.__ptoto__ = func.prototype
+  let ret = func.apply(obj, args)
+  if (ret &amp;&amp; (typeof ret === 'object' || typeof ret === 'function')) return ret
+  return obj
+}
+</code></pre>
+<p>—&gt; 实现call</p>
+<pre><code>Function.prototype.myCall = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error!!')
+  
+  // 设置上下文，默认为window
+  context = context || window
+  // 备份默认的fn
+  const { fn } = context
+  
+  // 将函数赋值到对象属性上，调用时this就会绑定到对象上
+  context.fn = this
+  const result = context.fn(...([...arguments].slice(1)))
+  
+  // 恢复对象
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现apply</p>
+<pre><code>Function.prototype.myApply = function (context) {
+	if (typeof this !== 'function') throw new TypeError('Function Type Error')
+  
+  context = context || window
+  const { fn } = context
+  context.fn = this
+	const result = arguments[1] instanceof Array ? context.fn(...arguments[1]) : context.fn()
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现bind</p>
+<pre><code>Function.prototype.myBind = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error')
+
+  const that = this
+  const preArgs = [...arguments].slice(1)
+  return function F () {
+    return this instanceof F ? new that(...preArgs, ...arguments) : that.apply(context, [...preArgs, ...arguments])
+  }
+}
+</code></pre>
+<p>—&gt; 实现深拷贝</p>
+<pre><code>function deepClone (src) {
+  let result = null
+  // 源对象为数组
+  if (src instanceof Array) {
+    result = []
+    for (let val of src) result.push(deepClone(val))
+    return result
+  // 源对象为对象
+  } else if (src instanceof Object) {
+    result = {}
+    const keys = Reflect.ownKeys(src)
+    for (let key of keys) result[key] = deepClone(src[key])
+    return result
+  } else return src
+}
+</code></pre>
+<p>—&gt; 实现instanceof</p>
+<pre><code>function myInstanceof (val, type) {
+  const prototype = type.prototype
+  while (val = val.__proto__) {
+    if (val === prototype) return true
+  }
+  return false
+}
+</code></pre>
+<p>—&gt; 实现事件的订阅发布</p>
+<pre><code>class Event {
+  constructor () {
+    this._map = {}
+  }
+  // 订阅
+  subscribe (type, cb) {
+    this._map[type] = this._map[type] || []
+    const cbs = this._map[type]
+    if (!~cbs.indexOf(cb)) cbs.push(cb)
+    return this
+  }
+  // 触发
+  trigger (type, ...args) {
+    if (this._map[type]) this._map[type].map(cb =&gt; cb(...args))
+    return this
+  }
+  // 移除
+  remove (type, cb) {
+    let cbs = this._map[type]
+    if (cbs) {
+      const index = cbs.indexOf(cb)
+      if (index + 1) cbs.slice(index, 1)
+      else cbs = null
+    }
+    return this
+  }
+}
+</code></pre>
+<p>—&gt; 实现map</p>
+<pre><code>Array.prototype.myMap = function (func, context) {
+  if (typeof func !== 'function') throw new TypeError('Function Type error')
+  let temp = []
+  for (let i = 0;i &lt; this.length;i++) {
+    temp.push(func.call(context, this[i], i, this))
+  }      
+  return temp
+}
+</code></pre>
+<p>—&gt; 实现reduce</p>
+<pre><code>const reduce = (array, fn, initalValue) =&gt; {
+  let saver
+  if (initalValue === undefined) {
+    saver = array[0]
+    array.forEach((v, i) =&gt; {
+      if (i) saver = fn(saver, v)
+    })
+  } else {
+    saver = initalValue
+    array.forEach(v =&gt; {
+      saver = fn(saver, v)
+    })
+  }
+  return saver
+}
+</code></pre>
+<p>—&gt;无限参数的柯里化</p>
+<pre><code>function addendless () {
+  const args = [...arguments]
+  
+  let add = function () {
+    let _add = function () {
+      args.push(...arguments)
+      return _add
+    }
+
+    _add.toString = function () {
+      return args.reduce((a, b) =&gt; a + b)
+    }
+
+    return _add
+  }
+  return add(...args)
+}
+</code></pre>
+<p>—&gt; currying函数</p>
+<pre><code>function currying (fn) {
+  const  args = arguments.slice(1)
+  return function () {
+    return fn.call(null, ...args, ...arguments)
+  }
+}
+</code></pre>
+<p>—&gt; 偏函数partial</p>
+<pre><code>const partial = (fn, partialArgs) =&gt; {
+  	let args = partialArgs
+    return (...fillArgs) =&gt; {
+      let argIndex = 0
+      for (let i = 0;i &lt; args.length &amp;&amp; argIndex &lt; fillArgs.length;i++) {
+        if (args[i] === undefined) args[i] = fillArgs[argIndex++]
+      }
+      return fn.apply(null, args)
+    }
+}
+</code></pre>
+<p>—&gt; compose函数(多参数的)</p>
+<pre><code>// 需要用到上面实现的reduce函数
+const compose = (...fns) =&gt; val =&gt; reduce(fns.reverse(), (inital, fn) =&gt; fn(inital), val)
+</code></pre>
+<p>—&gt; 管道函数pipe</p>
+<pre><code>// 需要用到上面实现的reduce函数
+const pipe = (...fns) =&gt; val =&gt; reduce(fns, (inital, fn) =&gt; fn(inital), val)
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://alobe.github.io//post/this_refer">
+              <h3 class="post-title">
+                this关键字探究
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  All rights reserved @Alobe
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ant design 动态导入的注意事项 | Alobef</title>
+<title>扑克牌问题 | Alobef</title>
 <link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1558514702245">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
@@ -92,40 +92,47 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              ant design 动态导入的注意事项
+              扑克牌问题
             </h2>
             <div class="post-info">
               <time class="post-time">
-                · 2018-12-20 ·
+                · 2019-05-22 ·
               </time>
               
-                <a href="https://alobe.github.io//tag/A5nUi1rA5" class="post-tags">
-                  # React
-                </a>
-              
-                <a href="https://alobe.github.io//tag/bmSM67Iq9" class="post-tags">
-                  # Antd
-                </a>
-              
-                <a href="https://alobe.github.io//tag/pQSOOMj5i" class="post-tags">
-                  # Webpack
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
                 </a>
               
             </div>
             
-              <div class="post-feature-image" style="background-image: url('http://img.yang16.com/2017/12/29/ant3.jpg')">
-              </div>
-            
             <div class="post-content">
-              <h2 id="ant-design-组件库默认使用的是less如果使用的是比较高版本的less-loader进行打包转译ant-design的less代码时就会出现下面的错误">ant design 组件库默认使用的是less，如果使用的是比较高版本的less-loader进行打包转译ant design的less代码时，就会出现下面的错误</h2>
-<p><img src="https://0d077ef9e74d8.cdn.sohucs.com/rlO1Naw_png" alt="document"></p>
-<h2 id="相关错误详情可以查看这里">相关错误详情可以查看<a href="https://github.com/ant-design/ant-motion/issues/44">这里</a></h2>
-<h2 id="虽然有ant-design官方推荐的cracreate-react-app的配置方法详情请看这里但针对每个webpack的细节配置如果都需要这样侵入式的动态添加就显得十分繁复并且可读性十分的差所以我还是推荐使用原始的webpack配置方式">虽然有ant design官方推荐的cra（Create React App）的配置方法，<a href="https://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE">详情请看这里</a>,但针对每个webpack的细节配置如果都需要这样侵入式的动态添加，就显得十分繁复并且可读性十分的差，所以我还是推荐使用原始的webpack配置方式</h2>
-<h2 id="社区比较常见的做法有">社区比较常见的做法有</h2>
-<ul>
-<li>将less和less-loader分别降级到3.0和4.10以下(个人不是很推荐)</li>
-<li>另一种比较好的做法就是开启Javascript选项就行了，即less-loader的options中添加<code>javascriptEnabled: true</code>就可以了，这种方式兼容较高版本的webpack，个人较为推荐</li>
-</ul>
+              <p>描述：</p>
+<p>我手中有一堆扑克牌， 但是观众不知道它的顺序。
+第一步， 我从牌顶拿出一张牌， 放到桌子上。
+第二步， 我从牌顶再拿一张牌， 放在手上牌的底部。
+第三步， 重复第一步、第二步的操作， 直到我手中所有的牌都放到了桌子上。
+最后， 观众可以看到桌子上牌的顺序是：(牌底部）1,2,3,4,5,6,7,8,9,10,11,12,13(牌顶部）
+请问， 我刚开始拿在手里的牌的顺序是什么？
+请编程实现。</p>
+<pre><code>const result = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
+function getCards(result) {
+  const cards = []
+
+  while (result.length) {
+    cards.unshift(result.pop())
+    cards.unshift(cards.pop())
+  }
+
+  // 最后一次多做了一次头尾交换
+  cards.push(cards.shift())
+
+
+  return cards
+}
+
+console.log(getCards(result))
+</code></pre>
 
             </div>
           </article>
@@ -134,9 +141,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
+            <a href="https://alobe.github.io//post/javascript_core_tech_learn">
               <h3 class="post-title">
-                常用函数的简易实现以及相关知识点
+                《JavaScript核心技术开发解密》知识点记录
               </h3>
             </a>
           </div>  

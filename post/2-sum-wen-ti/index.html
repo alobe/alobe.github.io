@@ -1,9 +1,9 @@
 <html>
   <head>
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Antd | Alobef</title>
+<title>2-sum问题 | Alobef</title>
 <link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559052927703">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
@@ -88,51 +88,71 @@
   </div>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：#Antd
-            </h2> 
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              2-sum问题
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-05-22 ·
+              </time>
+              
+                <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tags">
+                  # js
+                </a>
+              
+            </div>
+            
+            <div class="post-content">
+              <p>假设有一组数字int[] a，给定一个数字sum，我们希望能够找到数组中是否有两个数字a, b, 他们的和等于数字sum</p>
+<pre><code class="language-js">const a = [1,2,4,6,9,3,5,10,12]
+
+function getSum (a, totalCount) {
+  const map = {}
+  a.forEach((val, index) =&gt; {
+    map[val] = {
+      v: index + 1,
+      marked: false
+    }
+  })
+
+  const result = []
+  a.map((val,index) =&gt; {
+    const otherVal = map[totalCount - val]
+    if (map[val].marked ||!map[totalCount - val] || map[totalCount - val].marked) return
+    const oVal = otherVal.v
+    if (oVal !== index + 1) {
+      result.push([val, totalCount - val])
+      map[val].marked = true
+      map[totalCount - val].marked = true
+    }
+  })
+
+  return result
+}
+
+console.log(getSum(a, 8))
+</code></pre>
+
+            </div>
+          </article>
         </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/ant-design_dynamic_import">
-        <h2 class="post-title">ant design 动态导入的注意事项</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2018-12-20 ·
-        </time>
+    
         
-          <a href="https://alobe.github.io//tag/A5nUi1rA5" class="post-tag">
-            # React
-          </a>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti">
+              <h3 class="post-title">
+                n级阶梯问题
+              </h3>
+            </a>
+          </div>  
         
-          <a href="https://alobe.github.io//tag/bmSM67Iq9" class="post-tag">
-            # Antd
-          </a>
-        
-          <a href="https://alobe.github.io//tag/pQSOOMj5i" class="post-tag">
-            # Webpack
-          </a>
-        
-      </div>
-      
-        <a href="https://alobe.github.io//post/ant-design_dynamic_import" class="post-feature-image" style="background-image: url('http://img.yang16.com/2017/12/29/ant3.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-</div>
 
-        <div class="pagination-container">
-  
-  
-</div>
-
+        
+    
         <div class="site-footer">
   All rights reserved @Alobe
 </div>

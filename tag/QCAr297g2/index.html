@@ -1,249 +1,231 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>js | Alobef</title>
-<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559052927703">
+<meta name="description" content="落李花飞显此景，漾文鱼跃衬远波">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559299990382">
 <link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://alobe.github.io/">
-  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1559052927703" alt="">
-  </a>
-  <h1 class="site-title">
-    Alobef
-  </h1>
-  <p class="site-description">
-    落李花飞显此景，漾文鱼跃衬远波
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/alobe" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/alobewb" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/3866646670/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
-          <i class="fab fa-facebook"></i>
-        </a>
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：#js
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/2-sum-wen-ti">
-        <h2 class="post-title">2-sum问题</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alobe.github.io/">
+        <img src="https://alobe.github.io//images/avatar.png?v=1559299990382" class="site-logo">
+        <h1 class="site-title">Alobef</h1>
       </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-05-22 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti">
-        <h2 class="post-title">n级阶梯问题</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-05-22 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/bu-ke-pai-wen-ti">
-        <h2 class="post-title">扑克牌问题</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-05-22 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/javascript_core_tech_learn">
-        <h2 class="post-title">《JavaScript核心技术开发解密》知识点记录</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2019-04-29 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/H6B9GeCeb" class="post-tag">
-            # 书籍阅读
-          </a>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-        <a href="https://alobe.github.io//post/javascript_core_tech_learn" class="post-feature-image" style="background-image: url('http://g.search2.alicdn.com/img/bao/uploaded/i4/i1/2599440650/O1CN01HpdYF71GfjvZEJXT0_!!0-item_pic.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
-        <h2 class="post-title">常用函数的简易实现以及相关知识点</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2018-10-24 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-        <a href="https://alobe.github.io//post/call_apply_instanceof_etc" class="post-feature-image" style="background-image: url('https://static1.squarespace.com/static/58d20c79725e25b221549193/t/5aaa1da871c10b1937790961/1521098157324/js.jpg?format=1500w')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/this_refer">
-        <h2 class="post-title">this关键字探究</h2>
-      </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2018-08-20 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/QCAr297g2" class="post-tag">
-            # js
-          </a>
-        
-      </div>
-      
-        <a href="https://alobe.github.io//post/this_refer" class="post-feature-image" style="background-image: url('data:image/png;base64,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')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  All rights reserved @Alobe
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      落李花飞显此景，漾文鱼跃衬远波
+    </div>
+    <div class="site-footer">
+      All rights reserved @Alobe
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: js</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/2-sum-wen-ti">
+                  <h2 class="post-title">2-sum问题</h2>
+                </a>
+                <div class="post-date">
+                  2019-05-22
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti">
+                  <h2 class="post-title">n级阶梯问题</h2>
+                </a>
+                <div class="post-date">
+                  2019-05-22
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/bu-ke-pai-wen-ti">
+                  <h2 class="post-title">扑克牌问题</h2>
+                </a>
+                <div class="post-date">
+                  2019-05-22
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/javascript_core_tech_learn">
+                  <h2 class="post-title">《JavaScript核心技术开发解密》知识点记录</h2>
+                </a>
+                <div class="post-date">
+                  2019-04-29
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://alobe.github.io//post/javascript_core_tech_learn">
+                  <div class="feature-container" style="background-image: url('http://g.search2.alicdn.com/img/bao/uploaded/i4/i1/2599440650/O1CN01HpdYF71GfjvZEJXT0_!!0-item_pic.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
+                  <h2 class="post-title">常用函数的简易实现以及相关知识点</h2>
+                </a>
+                <div class="post-date">
+                  2018-10-24
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://alobe.github.io//post/call_apply_instanceof_etc">
+                  <div class="feature-container" style="background-image: url('https://static1.squarespace.com/static/58d20c79725e25b221549193/t/5aaa1da871c10b1937790961/1521098157324/js.jpg?format=1500w')">
+                  </div>
+                </a>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/this_refer">
+                  <h2 class="post-title">this关键字探究</h2>
+                </a>
+                <div class="post-date">
+                  2018-08-20
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://alobe.github.io//post/this_refer">
+                  <div class="feature-container" style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU0AAACXCAMAAACm/PkLAAAAh1BMVEX///8AAACamppwcHDS0tLHx8dOTk6zs7P39/e4uLiQkJB5eXmkpKTo6Oi8vLz6+vrd3d3t7e0uLi4SEhJJSUleXl7W1tZUVFTe3t6qqqp2dnaKioqDg4Pw8PBpaWnMzMwcHBwoKChCQkKgoKBaWloLCwsqKio1NTUYGBhkZGQhISE8PDw0NDQmx2ojAAAGdUlEQVR4nO2c54KiMBCAsSDIir0s9rpF9/2f7xYRJJMECDfcJTLfv10MTD6RtCFWk8DDahB4kE1MyCYmZBMTsokJ2cSEbGJCNjEhm5iQTUzIJiZkExOyiQnZxIRsYsLZnLWIosxybc4toijzXJvt/x2iQbTJJiJkExOyiQnZxIRsYkI2MSGbmJBNTMgmJmQTE7KJCdnEhGxiQjYxIZuYkE1MyCYmZBMTsolJrWz63SCotDrm2Rwu12mWg4LlBsH4Xp/PU3WxmWfTBvFtChbbJyUWRb8AZcy3OSpUqpkucqtKp/k2/SKFhmyZdUWx1cTmGBQq+HhQxXyb7wXKOLBSzWpiq4fNb1ipRTWxmW9zmF9k8AUrNa6mHTLfZoEcPhfWqXGrJjbzbRaIb7CHlWpVE5uONuc7BvBgLGHT4rJU+5UErqXNY+Z9BG3uCpyxC8qMK4lbT5sdNoA39ii0aRc5JfiCCrRcpaiJzRFTpKLeZm1sWv5nUuDiVBBzhPk2CzYoAy++MSsaVYbUxmZY8rRc9V3kYBnMt9n95/HJIZuYmG+zujZFHbKJyWvZdDdu6ckhd+Tvuk7fnvuj0i2VjjYXbABbfxgTDtmhzeBRah583/aT68/0vC7WBU3x7iwXh+cpPxZvTqnXS3Wyubt17nCzkanoZDYddq3iBDqV9rGTYjplDu+mokv9lHiE6GQTeuKZCD4V2hz+cB9dM2uZcNojdXBzll1t31N9bLyEzUD44fTkktxmP+t6V8VnxivYbAo/y4zgpTbXOVfcKt2e5tt0uAXJmMuzbZbZfMu95EFl9s58mxlCnvPMEpviRwRDR+XmNN9mFkk3R2zTzz/DVKkGr20zcSG2KW3NExTX3V/bZtIQCW1ydedQTWJ4cZvxzSm0ybXnq5MTNLfPvzuqNTDLpmgslM1j+Vhok11l/0wesv3H2GimXAOtbH6N71zYADpBLyYc90hsXg/Cf6+iU4tsDth/pZft7WujVK6STjZj1OaQQlp22LWcr/gjj586tBmmKbJVn7BX8UrcmS9iMxn0cHtlNQ7RAZFN9kQXEITyPFTIK9jsZh2MkmVFNsEIHaOeL2CTyazhJteitkVkc4df0RewyWR9cWPFKHyRTW4ktPjrXC/zbbJjvw0MPzIksinaafR2av/Ngrv5NnvsYZiqGc2gC21uGyIus2bpTTLNt2lnFs6yKR8HfJyKvYUEMd8meMMF9jkzbMI8RIZWkbcTIObbBOtpPQWb4J0sgKceufk2QauhYjNntvio/HOvt03pklLEQTU5sSY24cpk8rDNvjtVXyuqu02rndUUwWvnUXubvyPMrIVLtdqTTSvcVgH2UhPUJjnJZsTI9j6EOpUaIrL5ZNTrTDibz5mQTduxc/pMBthcskers/nLxgbpjvG7RW4zmuubZmbOGWDzmz1aqU2LS6aJvsuUpm1G5DraBEkDV/Yosk0fPhjBnN6WK57x/rCONuFOB+yNhGtzs4ettsvO6YX3Jlhuku+xoqPNJYiAjR7VpjtuNM7sGcC9+XtxF7ZNgSVBR5vcQi7z0jSmzcF9ILRnXjkCN2Ig2GNlIpuf19Emn+67CHbzX4Jw2IxpMx5Vfjx9DsBmP7ZgrwDpzamjTX5VPAbNZjQVnOoNfa77Q3/jz70Dd3qQExICuhkJOtrkVsrwbd7vTS7hkO+7hyPLd/6/e0nkOtrkF8VjUG1ymySJaIsTEyWBa2lTOumIaRP2HISEyUiCnwpMs4nR0qZ1gUE8QLQpyAATcO/aw03ozHpuytdmEW363B5JAqLVZf4tGNlgXU+bstd4MH/pbn7W+0Mat7RpVH8zRNwQ4bbpOe+3fCU1h98tSC95oqtNF86MVWDT2mS9ybZOnZjtv8vT4XW1aVndQymbp0I2k0QOR9Iba7FTLWntZ3nM+tq0Bn2QdnW9z4W5PgsotVt5aVZRhtaQ/a+Xmobze9wDdOFx85/2gf16xGhsM2TueNvz9NjZrpxdZTth/8ru9lat2WK62HpOX5KA1Pa+j2cvO4Fbc5uGQTYxIZuYkE1MyCYmZBMTsokJ2cSEbGJCNjEhm5iQTUzIJiZkExOyiQnZxIRsYkI2MSGbmJBNTMgmJmQTk3ybpbcMqSFcVjRnc9YiisJlyIt2CSLKQjYxIZuYkE1MyCYmZBMTsokJ2cSEbGJCNjEhm5iQTUzIJiZkExOyiYnVJPD4A8Dklisyg+OXAAAAAElFTkSuQmCC')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>

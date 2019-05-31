@@ -1,139 +1,146 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>VS Code | Alobef</title>
-<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559052927703">
+<meta name="description" content="落李花飞显此景，漾文鱼跃衬远波">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559299990382">
 <link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://alobe.github.io/">
-  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1559052927703" alt="">
-  </a>
-  <h1 class="site-title">
-    Alobef
-  </h1>
-  <p class="site-description">
-    落李花飞显此景，漾文鱼跃衬远波
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/alobe" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-        <a href="https://twitter.com/alobewb" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-      
-    
-      
-        <a href="https://weibo.com/3866646670/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
-          <i class="fab fa-facebook"></i>
-        </a>
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：#VS Code
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://alobe.github.io//post/vscode_shortcut">
-        <h2 class="post-title">vs code快捷键相关</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alobe.github.io/">
+        <img src="https://alobe.github.io//images/avatar.png?v=1559299990382" class="site-logo">
+        <h1 class="site-title">Alobef</h1>
       </a>
-      <div class="post-info">
-        <time class="post-time">
-          · 2018-05-15 ·
-        </time>
-        
-          <a href="https://alobe.github.io//tag/T2mo8Hrl2" class="post-tag">
-            # VS Code
-          </a>
-        
-      </div>
-      
-        <a href="https://alobe.github.io//post/vscode_shortcut" class="post-feature-image" style="background-image: url('https://www.elegantthemes.com/blog/wp-content/uploads/2019/01/000-VS-Code.png')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </di>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  All rights reserved @Alobe
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      落李花飞显此景，漾文鱼跃衬远波
+    </div>
+    <div class="site-footer">
+      All rights reserved @Alobe
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: VS Code</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://alobe.github.io//post/vscode_shortcut">
+                  <h2 class="post-title">vs code快捷键相关</h2>
+                </a>
+                <div class="post-date">
+                  2018-05-15
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://alobe.github.io//post/vscode_shortcut">
+                  <div class="feature-container" style="background-image: url('https://www.elegantthemes.com/blog/wp-content/uploads/2019/01/000-VS-Code.png')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>

@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://alobe.github.io/</id>
+    <title>Alobef</title>
+    <updated>2019-05-31T10:53:27.266Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://alobe.github.io/"/>
+    <link rel="self" href="https://alobe.github.io//atom.xml"/>
+    <subtitle>落李花飞显此景，漾文鱼跃衬远波</subtitle>
+    <logo>https://alobe.github.io//images/avatar.png</logo>
+    <icon>https://alobe.github.io//favicon.ico</icon>
+    <rights>All rights reserved 2019, Alobef</rights>
+    <entry>
+        <title type="html"><![CDATA[K-SUM问题]]></title>
+        <id>https://alobe.github.io//post/k-sum-wen-ti</id>
+        <link href="https://alobe.github.io//post/k-sum-wen-ti">
+        </link>
+        <updated>2019-05-22T08:54:11.000Z</updated>
+        <content type="html"><![CDATA[<p>背包问题：从给定的无序、不重复的数组 A 中，取出 N 个数，使其相加和 为 M</p>
+<pre><code class="language-js">function getCombBySum(array,sum,tolerance,targetCount){
+  /*
+  array： 数据源数组，必选；
+  sum： 相加的和，必选；
+  tolerance： 容差，如果不指定此参数，则相加的和必须等于sum参数，指定此参数可以使结果在容差范围内浮动，可选；
+  targetCount： 操作数数量，如果不指定此参数，则结果包含所有可能的情况，指定此参数可以筛选出固定数量的数相加，假如指定为3，那么结果只包含三个数相加的情况，可选；
+  返回值： 返回的是数组套数组结构，内层数组中的元素是操作数，外层数组中的元素是所有可能的结果；
+  */
+  var util = {
+    /*
+      get combination from array
+      arr: target array
+      num: combination item length
+      return: one array that contain combination arrays
+    */
+    /*获取所有的可能组合
+    如果是[1,2,3,4,5]取出3个，那么可能性就有10种 C(5,3)= C(5,2)
+    公式： 
+    全排列  P(n,m)=n!/(n-m)!
+    组合排列 P(n,m)=n!/m!/(n-m)!
+    C(5,2)=5!/2!*3!=5*4*3*2*1/[(2*1)*(3*2*1)]=10
+    这是使用了循环加递归做出了组合排序
+    */
+    getCombination: function(arr, num) {  //  索引数组 操作数数量
+      var r=[];
+      (function f(t,a,n){
+          if (n == 0) return r.push(t);
+          for (var i=0,l=a.length; i&lt;=l-n; i++) {
+              f(t.concat(a[i]), a.slice(i+1), n-1);
+        }
+      })([],arr,num);
+      return r;
+    },
+    // 获取数组的索引
+    getArrayIndex: function(array) {
+      var i = 0,
+        r = [];
+      for(i = 0;i&lt;array.length;i++){
+        r.push(i);
+      }
+      
+      return r;
+    }
+  },logic = {
+    //  对数组进行排序
+    //  获取数组中比sum小的数
+    init: function(array,sum) {  //初始化去除不可能的元素
+      // clone array
+      var _array = array.concat(),
+      r = [],
+      i = 0;
+      // sort by asc
+      _array.sort(function(a,b){
+        return a - b;
+      });
+      // 当它小于或等于总和时获得所有数字
+      for(i = 0;i&lt;_array.length;i++){
+        if(_array[i]&lt;=sum){
+          r.push(_array[i]);
+        }else{
+          break;
+        }
+      }
+      console.log('初始化后的数据源:', r);
+      return r;
+    },
+    // important function
+    core: function(array,sum,arrayIndex,count,r){
+      var i = 0,
+        k = 0,
+        combArray = [],
+        _sum = 0,
+        _cca = [],
+        _cache = [];
+      
+      if(count == _returnMark){
+        return;
+      }
+      // 获取当前的计数总和
+      // 这里排序的不是原来的数组,而是求的索引后的数组
+      combArray = util.getCombination(arrayIndex,count);
+      console.log('getCombination返回的值：', combArray);
+      for(i = 0;i&lt;combArray.length;i++){
+        _cca = combArray[i];
+        _sum = 0;
+        _cache = [];
+        // calculate the sum from combination
+        for(k = 0;k&lt;_cca.length;k++){
+          _sum += array[_cca[k]];
+          _cache.push(array[_cca[k]]);
+        }
+        if(Math.abs(_sum-sum) &lt;= _tolerance){
+          r.push(_cache);
+        }      
+      }
+
+      logic.core(array,sum,arrayIndex,count-1,r);
+    }
+  },
+    r = [],
+    _array = [],
+    _targetCount = 0,
+    _tolerance = 0,
+    _returnMark = 0;
+    
+    // check data
+  _targetCount = targetCount || _targetCount;
+  _tolerance = tolerance || _tolerance;
+  
+  _array = logic.init(array,sum);
+  if(_targetCount){
+      _returnMark = _targetCount-1;
+  }
+  console.log('_targetCount的值:', _targetCount);
+  console.log('_returnMark的值:', _returnMark);
+
+  logic.core(_array,sum,util.getArrayIndex(_array),(_targetCount || _array.length),r);
+
+  return r;
+}
+var res1 = getCombBySum([1, 2, 3, 4, 5], 6, null, 2);
+// var res2 = getCombBySum([1, 2, 3, 4, 5, 9, 7, 10, 8], 9, null, null);
+console.log(res1);
+// console.log(res2);
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2-sum问题]]></title>
+        <id>https://alobe.github.io//post/2-sum-wen-ti</id>
+        <link href="https://alobe.github.io//post/2-sum-wen-ti">
+        </link>
+        <updated>2019-05-22T08:49:04.000Z</updated>
+        <content type="html"><![CDATA[<p>假设有一组数字int[] a，给定一个数字sum，我们希望能够找到数组中是否有两个数字a, b, 他们的和等于数字sum</p>
+<pre><code class="language-js">const a = [1,2,4,6,9,3,5,10,12]
+
+function getSum (a, totalCount) {
+  const map = {}
+  a.forEach((val, index) =&gt; {
+    map[val] = {
+      v: index + 1,
+      marked: false
+    }
+  })
+
+  const result = []
+  a.map((val,index) =&gt; {
+    const otherVal = map[totalCount - val]
+    if (map[val].marked ||!map[totalCount - val] || map[totalCount - val].marked) return
+    const oVal = otherVal.v
+    if (oVal !== index + 1) {
+      result.push([val, totalCount - val])
+      map[val].marked = true
+      map[totalCount - val].marked = true
+    }
+  })
+
+  return result
+}
+
+console.log(getSum(a, 8))
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[n级阶梯问题]]></title>
+        <id>https://alobe.github.io//post/n-ji-jie-ti-wen-ti</id>
+        <link href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti">
+        </link>
+        <updated>2019-05-22T08:24:02.000Z</updated>
+        <content type="html"><![CDATA[<p>一个楼梯有N节，每次只能走1步或者2步，请问走完N节楼梯有几种走法？</p>
+<pre><code class="language-js">// 递归结合动态规划
+function step1 (n, map) {
+  if (n &lt;= 0) return 0
+  if (n &lt;= 2) return n
+  if (map[n]) return map[n]
+  const count = step1(n - 1, map) + step1(n-2, map)
+  map[n] = count
+  return count
+}
+
+// 动态规划
+function step2 (n) {
+  if (n &lt;= 0) return 0
+  if (n &lt;= 2) return n
+  const a = new Array(10000).fill(0)
+  a[1] = 1
+  a[2] = 2
+  let i
+  for (i = 3;i &lt;= n;i++) {
+    a[i] = a[i - 1] + a[i -2]
+  }
+  return a[i - 1]
+}
+
+// 节省空间的动态规划
+function step3 (n) {
+  if (n &lt;= 0) return 0
+  if (n &lt;= 2) return n
+  let i= 3, a1 = 1,a2 = 2
+  while (i &lt;= n ) {
+    let temp = a1 + a2
+    a1 = a2
+    a2 = temp
+    i++
+  }
+  return a2
+}
+
+console.log(step1(4, {}), step2(4), step3(4))
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[扑克牌问题]]></title>
+        <id>https://alobe.github.io//post/bu-ke-pai-wen-ti</id>
+        <link href="https://alobe.github.io//post/bu-ke-pai-wen-ti">
+        </link>
+        <updated>2019-05-22T05:56:03.000Z</updated>
+        <content type="html"><![CDATA[<p>描述：</p>
+<p>我手中有一堆扑克牌， 但是观众不知道它的顺序。
+第一步， 我从牌顶拿出一张牌， 放到桌子上。
+第二步， 我从牌顶再拿一张牌， 放在手上牌的底部。
+第三步， 重复第一步、第二步的操作， 直到我手中所有的牌都放到了桌子上。
+最后， 观众可以看到桌子上牌的顺序是：(牌底部）1,2,3,4,5,6,7,8,9,10,11,12,13(牌顶部）
+请问， 我刚开始拿在手里的牌的顺序是什么？
+请编程实现。</p>
+<pre><code class="language-js">const result = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
+function getCards(result) {
+  const cards = []
+
+  while (result.length) {
+    cards.unshift(result.pop())
+    cards.unshift(cards.pop())
+  }
+
+  // 最后一次多做了一次头尾交换
+  cards.push(cards.shift())
+
+
+  return cards
+}
+
+console.log(getCards(result))
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[《JavaScript核心技术开发解密》知识点记录]]></title>
+        <id>https://alobe.github.io//post/javascript_core_tech_learn</id>
+        <link href="https://alobe.github.io//post/javascript_core_tech_learn">
+        </link>
+        <updated>2019-04-29T03:57:18.000Z</updated>
+        <content type="html"><![CDATA[<p>运行环境&lt;执行上下文&gt;：</p>
+<p>-&gt; 全局环境：代码运行首先进入全局环境，也是最外层的作用域</p>
+<p>-&gt; 函数环境：当函数被调用执行时创建的上下文环境，即函数作用域</p>
+<p>-&gt; eval环境：todo</p>
+<p>变量对象&lt;VO，Variable Object&gt;：包含的内容有：函数的参数对象arguments、当前上下文的函数声明（function声明的函数）、当前上下文的所有变量声明</p>
+<p>活动对象&lt;AO，Activation Object&gt;：处于函数调用栈栈顶的变量对象VO，即上下文对象处于激活状态，除了包含变量对象的全部属性，并且属性都完成了赋值，还包含this的指向</p>
+<p>举例：</p>
+<pre><code>function test () {
+  console.log(a)
+  console.log(foo())
+  
+  var a = 1
+  function foo () {
+    return 2
+  }
+}
+
+test()
+
+// 过程解析
+// 创建过程
+testEC = {					// 创建上下文对象
+  VO: {},						// 变量对象
+  scopeChain: [],		// 作用域链，包含上下文变量对象，比如[VO(foo), VO(test), VO(global)]
+  this: {}
+}
+
+VO = {										// 变量对象赋值
+  arguments: {...},				// 函数参数对象
+	foo: &lt;foo reference&gt;,		// 内部函数声明
+	a: undefined						// 内部变量 
+}
+
+// 执行阶段
+VO -&gt; AO
+AO = {
+  arguments: {},
+  foo: &lt;foo reference&gt;,
+  a: 1,
+  this: Window
+}
+</code></pre>
+<p>作用域：</p>
+<p>常见的有全局作用域和函数作用域</p>
+<p>全局作用域特性：声明的变量和函数全局都能访问</p>
+<p>函数作用域特性：声明的变量和方法只能被下层子作用域访问</p>
+<p>注意：单独的‘{}’不会产生新的作用域，常见的像for、while、switch等，但是可以模拟块级作用域，通过使用立即执行函数的方式包裹代码块来实现</p>
+<pre><code>(function () {
+  // 代码块
+})()
+</code></pre>
+<p>作用域链：</p>
+<p>由当前执行环境与上层执行环境的一系列变量对象组成，保证了当前执行环境对符合访问权限的变量和函数的有序访问</p>
+<p>闭包：</p>
+<p>概念：一种特殊的对象（chrome浏览器调试工具里可以看到，Closure()来表示），由执行上下文(A)以及在该执行上下文中创建的函数(B)，当B执行时，如果访问了A中的变量对象，则会产生闭包</p>
+<p>MDN中的定义：闭包是指这样的作用域，它包含了一个函数，这个函数可以调用被这个作用域所封闭的变量、函数或者闭包的内容。</p>
+<p>catch：闭包会导致函数的作用域链发生变化吗？</p>
+<p>不会，虽然作用域链是在代码执行时才生成的，但是作用域规则在代码编译时就已经确定了并且不会在执行时发生改变</p>
+<p>应用</p>
+<p>单例模式（即只有一个实例，使用立即执行函数创造一个函数作用域与外界隔离）</p>
+<p>进一步的就是模块化（每个单例就是一个模块）</p>
+<p>模拟私有变量</p>
+<p>异步服务调用</p>
+<p>高阶函数，像柯里化的函数，偏函数</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法]]></title>
+        <id>https://alobe.github.io//post/webpack4_compile_es6</id>
+        <link href="https://alobe.github.io//post/webpack4_compile_es6">
+        </link>
+        <updated>2019-03-26T08:33:09.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="现在的一些工具库的依赖库可能是通过es6语法进行编写的当我们还是使用uglifyjs-webpack-plugin一个webpack-js代码编译压缩js代码的插件就会造成编译不通过的问题">现在的一些工具库的依赖库可能是通过es6语法进行编写的，当我们还是使用uglifyjs-webpack-plugin（一个webpack JS代码编译压缩js代码的插件），就会造成编译不通过的问题</h3>
+<h3 id="举个例子像在react应用中常用于解析request的query参数的query-string库它的一个依赖库strict-uri-encode就采用了es6的写法其源码如下">举个例子，像在react应用中常用于解析request的query参数的<a href="https://www.npmjs.com/package/query-string">query-string库</a>，它的一个依赖库<a href="https://www.npmjs.com/package/strict-uri-encode">strict-uri-encode</a>就采用了es6的写法，其源码如下：</h3>
+<pre><code>'use strict';
+module.exports = str =&gt; encodeURIComponent(str).replace(/[!'()*]/g, x =&gt; `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
+</code></pre>
+<h3 id="很明显是用了es6里十分常见的箭头函数但如果还是使用uglifyjs-webpack-plugin进行js代码压缩的话很容易出现下面的错误">很明显是用了es6里十分常见的箭头函数，但如果还是使用uglifyjs-webpack-plugin进行js代码压缩的话，很容易出现下面的错误</h3>
+<pre><code>ERROR in index.884a774e80700a169db9.js from UglifyJs
+Unexpected token: operator (&gt;) [index.884a774e80700a169db9.js:75386,22]
+</code></pre>
+<h3 id="具体的错误详情讨论可以查看github-issue">具体的错误详情讨论可以查看<a href="https://github.com/kevva/strict-uri-encode/issues/7">github issue</a></h3>
+<h3 id="一开始我先查看uglifyjs-webpack-plugin的官方配置文档发现uglifyoptions有ecma这个配置选项用于支持支持不同版本的ecmascript的编译-然而实践中发现这个东西并没有什么卵用估计是相关功能还未完全完成最新版本的都不行你说你写在官方文档作甚">一开始我先查看uglifyjs-webpack-plugin的官方配置文档,发现<a href="https://www.webpackjs.com/plugins/uglifyjs-webpack-plugin/#uglifyoptions">uglifyOptions</a>有ecma这个配置选项，用于支持支持不同版本的ECMAScript的编译。然而实践中发现这个东西并没有什么卵用，估计是相关功能还未完全完成（最新版本的都不行，你说你写在官方文档作甚😂）</h3>
+<h3 id="然后尝试了很多种办法比如将这个库加到babel-loader的includes中-使用uglify-es-webpack-plugin等结果都不是很理想">然后尝试了很多种办法，比如将这个库加到babel-loader的includes中、使用uglify-es-webpack-plugin等结果都不是很理想</h3>
+<h3 id="最后找到terser-webpack-plugin这个webpack插件它的配置和uglify-webpack-plugin的配置几乎一模一样还是相似的tersetoptions的ecma配置项然后打包成功">最后找到<a href="https://www.npmjs.com/package/terser-webpack-plugin">terser-webpack-plugin</a>这个webpack插件，它的配置和uglify-webpack-plugin的配置几乎一模一样，还是相似的tersetOptions的ecma配置项，然后打包成功🎉</h3>
+<h3 id="terser-webpack-plugin具体的使用可以查看这里">terser-webpack-plugin具体的使用可以查看<a href="https://www.npmjs.com/package/terser-webpack-plugin">这里</a></h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[修改MySQL全局变量常见场景和几种解决方案]]></title>
+        <id>https://alobe.github.io//post/Mysql_valiables_vary</id>
+        <link href="https://alobe.github.io//post/Mysql_valiables_vary">
+        </link>
+        <updated>2019-01-04T13:24:41.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="举个十分常见的例子比如mysql数据库表区分大小写敏感配置即lower_case_table_names在windows和mac-osx系统下的默认值是1即数据库表大小写区分不敏感然而在linux系统下默认值是为0即大小写敏感">举个十分常见的例子，比如MySQL数据库表区分大小写敏感配置，即lower_case_table_names,在windows和mac OSX系统下的默认值是1，即数据库表大小写区分不敏感，然而在linux系统下默认值是为0，即大小写敏感。</h2>
+<h2 id="相对常见的修改方式有以下两种">相对常见的修改方式有以下两种</h2>
+<h3 id="命令行进入mysql或者是常见的mysql连接工具比如navicat-dbeaver-sequel-pro的query页面首先先查看该值详情">命令行进入MySQL或者是常见的MySQL连接工具比如Navicat、DBeaver、Sequel Pro的query页面，首先先查看该值详情</h3>
+<pre><code>show variables like &quot;%lower_case_table_names%&quot;
+</code></pre>
+<h3 id="假设显示的值为lower_case_table_names0">,假设显示的值为<code>lower_case_table_names=0</code></h3>
+<h3 id="解决方法">解决方法</h3>
+<h4 id="1-直接执行命令">1、直接执行命令</h4>
+<pre><code>set global variables lower_case_table_names=1
+</code></pre>
+<h4 id="2-修改mysql的配置文件mycnf在mysqld节点后面添加">2、修改MySQL的配置文件my.cnf，在<code>[mysqld]</code>节点后面添加</h4>
+<pre><code>lower_case_table_names=1
+</code></pre>
+<h3 id="然后重启mysql服务即可">,然后重启MySQL服务即可</h3>
+<h2 id="进阶内容">【进阶内容】</h2>
+<h3 id="假如mysql是本地通过docker镜像创建的或者是线上的docker镜像服务比如阿里云的mysql镜像应用">假如MySQL是本地通过docker镜像创建的，或者是线上的docker镜像服务，比如阿里云的MySQL镜像应用。</h3>
+<h3 id="针对本地的mysql镜像远端应该也行只要能连接上远端的docker镜像执行命令">针对本地的MySQL镜像（远端应该也行，只要能连接上远端的docker镜像），执行命令</h3>
+<pre><code>docker exec -it 镜像名称 /bin/bash
+</code></pre>
+<h3 id="镜像名称可以通过docker-ps来获取使用系统自带的bash工具进入镜像然后重复上面的解决方法一即">(镜像名称可以通过<code>docker ps</code>来获取，使用系统自带的bash工具进入镜像),然后重复上面的解决方法一，即</h3>
+<pre><code>set global variables lower_case_table_names
+</code></pre>
+<h3 id="对于解决方法二操作稍微比较复杂我就只讲下思路首先先看镜像内有没有安装vim等编辑工具没有则安装可通过命令">。对于解决方法二，操作稍微比较复杂，我就只讲下思路，首先先看镜像内有没有安装vim等编辑工具，没有则安装，可通过命令</h3>
+<pre><code>apt-get update &amp; apt-get install vim
+</code></pre>
+<h3 id="然后通过vim打开对应的mysql的配置文件mycnf修改保存即可">,然后通过vim打开对应的MySQL的配置文件my.cnf修改保存即可</h3>
+<h2 id="其实还有更好的方法就是修改mysql镜像的dockerfile直接在mysqld安装命令后添加一条命令">其实还有更好的方法就是，修改MySQL镜像的dockerfile，直接在mysqld安装命令后添加一条命令</h2>
+<pre><code>CMD mysqld --lower_case_table_names=1
+</code></pre>
+<h3 id="即可或者是docker-composeyml配置文件中的mysql镜像配置中添加">即可，或者是docker-compose.yml配置文件中的MySQL镜像配置中添加</h3>
+<pre><code>commend:
+  - &quot;--lower_case_table_names=1&quot;
+</code></pre>
+<h2 id="然后如果是通过阿里云官方mysql镜像构建的服务应用只需要对应用的容器配置中的command添加mysqld-lower_case_table_names1">然后如果是通过阿里云官方MySQL镜像构建的服务应用，只需要对应用的容器配置中的command添加<code>[&quot;mysqld&quot;, &quot;--lower_case_table_names=1&quot;]</code></h2>
+<h2 id="最后重启mysql镜像应用或服务">最后重启MySQL镜像应用或服务</h2>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ant design 动态导入的注意事项]]></title>
+        <id>https://alobe.github.io//post/ant-design_dynamic_import</id>
+        <link href="https://alobe.github.io//post/ant-design_dynamic_import">
+        </link>
+        <updated>2018-12-20T12:31:33.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="ant-design-组件库默认使用的是less如果使用的是比较高版本的less-loader进行打包转译ant-design的less代码时就会出现下面的错误">ant design 组件库默认使用的是less，如果使用的是比较高版本的less-loader进行打包转译ant design的less代码时，就会出现下面的错误</h2>
+<p><img src="https://0d077ef9e74d8.cdn.sohucs.com/rlO1Naw_png" alt="document"></p>
+<h2 id="相关错误详情可以查看这里">相关错误详情可以查看<a href="https://github.com/ant-design/ant-motion/issues/44">这里</a></h2>
+<h2 id="虽然有ant-design官方推荐的cracreate-react-app的配置方法详情请看这里但针对每个webpack的细节配置如果都需要这样侵入式的动态添加就显得十分繁复并且可读性十分的差所以我还是推荐使用原始的webpack配置方式">虽然有ant design官方推荐的cra（Create React App）的配置方法，<a href="https://ant.design/docs/react/use-with-create-react-app-cn#%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE">详情请看这里</a>,但针对每个webpack的细节配置如果都需要这样侵入式的动态添加，就显得十分繁复并且可读性十分的差，所以我还是推荐使用原始的webpack配置方式</h2>
+<h2 id="社区比较常见的做法有">社区比较常见的做法有</h2>
+<ul>
+<li>将less和less-loader分别降级到3.0和4.10以下(个人不是很推荐)</li>
+<li>另一种比较好的做法就是开启Javascript选项就行了，即less-loader的options中添加<code>javascriptEnabled: true</code>就可以了，这种方式兼容较高版本的webpack，个人较为推荐</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[常用函数的简易实现以及相关知识点]]></title>
+        <id>https://alobe.github.io//post/call_apply_instanceof_etc</id>
+        <link href="https://alobe.github.io//post/call_apply_instanceof_etc">
+        </link>
+        <updated>2018-10-24T03:54:23.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>LHS和RHS的含义：赋值操作的左侧和右侧，LHS操作目标，RHS操作源，有对应的查询操作</li>
+<li>IIFE：立即执行函数（Immediately Invoked Function Expression）</li>
+<li>声明提升，函数声明优先提升，变量声明次之</li>
+<li>主要类型：string、boolean、number、object、null、undefined，内置对象：String、Boolean、Number、Object、Function、Array、Date、RegExp、Error</li>
+<li>原型和原型链
+<ul>
+<li>所有的函数，都有一个prototype属性</li>
+<li>所有的引用类型（数组、对象、函数），都有一个__proto__属性（也是一个对象），__proto__属性值指向它的构造函数的prototype属性值
+注意：ES6的箭头函数没有prototype属性，但是有__proto__属性
+原型链：当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的proto（即它的构造函数的prototype）中寻找，重复这个过程，这个链状的结构就叫原型链</li>
+</ul>
+</li>
+<li>箭头函数和function定义的函数区别：
+function函数：this的指向取决于当前的调用环境，变量提升优先级最高
+箭头函数：this的指向一直指向定义其的外部环境，不可使用arguments对象、yield命令，因为没有自己的this从而无法调用call、apply以及没有prototype属性（new命令执行时需要将prototype属性赋值给新对象的__ proto __）所以不能用于构造函数即new，变量提升优先级依赖于赋值到的定义变量，所以箭头函数一定要定义先于调用</li>
+</ol>
+<p>常见的实现案例</p>
+<p>—&gt; 实现new</p>
+<pre><code>function New (func, ...args) {
+  if (!func.prototype) throw new TypeError('wrong func')
+  let obj = {}
+  obj.__ptoto__ = func.prototype
+  let ret = func.apply(obj, args)
+  if (ret &amp;&amp; (typeof ret === 'object' || typeof ret === 'function')) return ret
+  return obj
+}
+</code></pre>
+<p>—&gt; 实现call</p>
+<pre><code>Function.prototype.myCall = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error!!')
+  
+  // 设置上下文，默认为window
+  context = context || window
+  // 备份默认的fn
+  const { fn } = context
+  
+  // 将函数赋值到对象属性上，调用时this就会绑定到对象上
+  context.fn = this
+  const result = context.fn(...([...arguments].slice(1)))
+  
+  // 恢复对象
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现apply</p>
+<pre><code>Function.prototype.myApply = function (context) {
+	if (typeof this !== 'function') throw new TypeError('Function Type Error')
+  
+  context = context || window
+  const { fn } = context
+  context.fn = this
+	const result = arguments[1] instanceof Array ? context.fn(...arguments[1]) : context.fn()
+  context.fn = fn
+  return result
+}
+</code></pre>
+<p>—&gt; 实现bind</p>
+<pre><code>Function.prototype.myBind = function (context) {
+  if (typeof this !== 'function') throw new TypeError('Function Type Error')
+
+  const that = this
+  const preArgs = [...arguments].slice(1)
+  return function F () {
+    return this instanceof F ? new that(...preArgs, ...arguments) : that.apply(context, [...preArgs, ...arguments])
+  }
+}
+</code></pre>
+<p>—&gt; 实现深拷贝</p>
+<pre><code>function deepClone (src) {
+  let result = null
+  // 源对象为数组
+  if (src instanceof Array) {
+    result = []
+    for (let val of src) result.push(deepClone(val))
+    return result
+  // 源对象为对象
+  } else if (src instanceof Object) {
+    result = {}
+    const keys = Reflect.ownKeys(src)
+    for (let key of keys) result[key] = deepClone(src[key])
+    return result
+  } else return src
+}
+</code></pre>
+<p>—&gt; 实现instanceof</p>
+<pre><code>function myInstanceof (val, type) {
+  const prototype = type.prototype
+  while (val = val.__proto__) {
+    if (val === prototype) return true
+  }
+  return false
+}
+</code></pre>
+<p>—&gt; 实现事件的订阅发布</p>
+<pre><code>class Event {
+  constructor () {
+    this._map = {}
+  }
+  // 订阅
+  subscribe (type, cb) {
+    this._map[type] = this._map[type] || []
+    const cbs = this._map[type]
+    if (!~cbs.indexOf(cb)) cbs.push(cb)
+    return this
+  }
+  // 触发
+  trigger (type, ...args) {
+    if (this._map[type]) this._map[type].map(cb =&gt; cb(...args))
+    return this
+  }
+  // 移除
+  remove (type, cb) {
+    let cbs = this._map[type]
+    if (cbs) {
+      const index = cbs.indexOf(cb)
+      if (index + 1) cbs.slice(index, 1)
+      else cbs = null
+    }
+    return this
+  }
+}
+</code></pre>
+<p>—&gt; 实现map</p>
+<pre><code>Array.prototype.myMap = function (func, context) {
+  if (typeof func !== 'function') throw new TypeError('Function Type error')
+  let temp = []
+  for (let i = 0;i &lt; this.length;i++) {
+    temp.push(func.call(context, this[i], i, this))
+  }      
+  return temp
+}
+</code></pre>
+<p>—&gt; 实现reduce</p>
+<pre><code>const reduce = (array, fn, initalValue) =&gt; {
+  let saver
+  if (initalValue === undefined) {
+    saver = array[0]
+    array.forEach((v, i) =&gt; {
+      if (i) saver = fn(saver, v)
+    })
+  } else {
+    saver = initalValue
+    array.forEach(v =&gt; {
+      saver = fn(saver, v)
+    })
+  }
+  return saver
+}
+</code></pre>
+<p>—&gt;无限参数的柯里化</p>
+<pre><code>function addendless () {
+  const args = [...arguments]
+  
+  let add = function () {
+    let _add = function () {
+      args.push(...arguments)
+      return _add
+    }
+
+    _add.toString = function () {
+      return args.reduce((a, b) =&gt; a + b)
+    }
+
+    return _add
+  }
+  return add(...args)
+}
+</code></pre>
+<p>—&gt; currying函数</p>
+<pre><code>function currying (fn) {
+  const  args = arguments.slice(1)
+  return function () {
+    return fn.call(null, ...args, ...arguments)
+  }
+}
+</code></pre>
+<p>—&gt; 偏函数partial</p>
+<pre><code>const partial = (fn, partialArgs) =&gt; {
+  	let args = partialArgs
+    return (...fillArgs) =&gt; {
+      let argIndex = 0
+      for (let i = 0;i &lt; args.length &amp;&amp; argIndex &lt; fillArgs.length;i++) {
+        if (args[i] === undefined) args[i] = fillArgs[argIndex++]
+      }
+      return fn.apply(null, args)
+    }
+}
+</code></pre>
+<p>—&gt; compose函数(多参数的)</p>
+<pre><code>// 需要用到上面实现的reduce函数
+const compose = (...fns) =&gt; val =&gt; reduce(fns.reverse(), (inital, fn) =&gt; fn(inital), val)
+</code></pre>
+<p>—&gt; 管道函数pipe</p>
+<pre><code>// 需要用到上面实现的reduce函数
+const pipe = (...fns) =&gt; val =&gt; reduce(fns, (inital, fn) =&gt; fn(inital), val)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[this关键字探究]]></title>
+        <id>https://alobe.github.io//post/this_refer</id>
+        <link href="https://alobe.github.io//post/this_refer">
+        </link>
+        <updated>2018-08-20T04:25:41.000Z</updated>
+        <content type="html"><![CDATA[<p>js作用域嵌套</p>
+<blockquote>
+<p>当一个块或函数嵌套在另一个块或函数中时，就发生了作用域的嵌套，进而形成了一条作用域链。因此，在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量， 或抵达最外层的作用域(也就是全局作用域)为止。</p>
+</blockquote>
+<p>bind函数问题：</p>
+<blockquote>
+<p><strong>定义</strong>：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数</p>
+<p>多次bind是无效的，原因是因为目标函数绑定的对象只会在第一次调用时绑定，之后都是对上次绑定的函数进行对象的绑定</p>
+</blockquote>
+<p>this关键字</p>
+<blockquote>
+<p><code>this</code>是在运行时（<code>runtime</code>）进行绑定的，<strong>而不是在编写时绑定的</strong>，它的上下文（对象）取决于函数调用时的各种条件。<code>this</code>的绑定和函数声明的位置没有任何关系，<strong>只取决于函数的调用方式</strong>。</p>
+<p>当一个函数被调用时，会创建一个活动记录(有时候也称为执行上下文)。这个记录会包含函数在哪里被调用(调用栈)、函数的调用方法、传入的参数等信息。<strong>this就是记录的其中一个属性</strong>，会在函数执行的过程中用到。（ PS:所以<code>this</code>并不等价于执行上下文）</p>
+</blockquote>
+<h4 id="this的绑定规则">this的绑定规则</h4>
+<ol>
+<li>
+<h4 id="默认绑定最常见的表现为独立函数调用this默认指向window注意在严格模式下this不再默认指向全局而是undefined">默认绑定，最常见的表现为独立函数调用，this默认指向window（<strong>注意：在严格模式下this不再默认指向全局，而是undefined</strong>）</h4>
+</li>
+<li>
+<p>隐式绑定，函数被某个对象拥有或者包含，也就是函数被作为对象的属性所引用，例如<code>obj.func()</code>，此时<code>this</code>会绑定到该对象上</p>
+<blockquote>
+<p><strong>隐式丢失</strong>，大部分的<code>this</code>绑定问题就是被“隐式绑定”的<strong>函数</strong>会丢失绑定对象，也就是说它会应用“默认绑定”，从而把<code>this</code>绑定到<code>Window</code>或<code>undefined</code>上，最常见的情况就是<strong>把对象方法作为回调函数进行传递时</strong> （比如<strong>setTimeout</strong>、<strong>setInterval</strong>，其它能改变作用域的有<strong>eval</strong>、<strong>with</strong>）</p>
+</blockquote>
+</li>
+<li>
+<p>显式绑定，通过<code>apply</code>、<code>call</code>、<code>bind</code>方法来显示地修改<code>this</code>的指向</p>
+</li>
+<li>
+<p>new 绑定，即获取对象属性时</p>
+</li>
+</ol>
+<p>ES6中有一种特殊的函数类型：<strong>箭头函数</strong>（不使用 this 的四种标准规则，而是根据外层&lt;函数或者全局&gt;作用域来决定 this，而传统的 this 与函数作用域没有任何关系,它只与调用位置的上下文对象有关)</p>
+<blockquote>
+<ul>
+<li>箭头函数最常用于回调函数中，例如事件处理器或者定时器.</li>
+<li>箭头函数可以像<code>bind</code> 一样确保函数的<code>this</code>被绑定到指定对象</li>
+<li>箭头函数用更常见的词法作用域取代了传统的<code>this</code>机制。</li>
+</ul>
+</blockquote>
+<h4 id="深入箭头函数">深入箭头函数</h4>
+<blockquote>
+<p>JS 类中的箭头函数只是语法糖，在编译之后，它将出现在构造函数中，在实例化时创建并分配</p>
+<p>在使用箭头函数（而不是手动 bind）的情况下，每次使用组件时都会创建一个全新的函数，这会对应用程序的性能和内存使用产生负面影响。</p>
+</blockquote>
+]]></content>
+    </entry>
+</feed>

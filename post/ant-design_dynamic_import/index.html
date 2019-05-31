@@ -1,119 +1,106 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>ant design 动态导入的注意事项 | Alobef</title>
-<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559052927703">
+<meta name="description" content="落李花飞显此景，漾文鱼跃衬远波">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559299990382">
 <link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
 
+
+  
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://alobe.github.io/">
-  <img class="avatar" src="https://alobe.github.io//images/avatar.png?v=1559052927703" alt="">
-  </a>
-  <h1 class="site-title">
-    Alobef
-  </h1>
-  <p class="site-description">
-    落李花飞显此景，漾文鱼跃衬远波
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alobe.github.io/">
+        <img src="https://alobe.github.io//images/avatar.png?v=1559299990382" class="site-logo">
+        <h1 class="site-title">Alobef</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-        <a href="https://github.com/alobe" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
+        
       
-    
+        
       
-        <a href="https://twitter.com/alobewb" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
+        
       
-    
+        
       
-        <a href="https://weibo.com/3866646670/profile" target="_blank">
-          <i class="fab fa-weibo"></i>
-        </a>
+        
       
-    
-      
-        <a href="https://www.zhihu.com/people/zhang-bo-zi-53/activities" target="_blank">
-          <i class="fab fa-zhihu"></i>
-        </a>
-      
-    
-      
-        <a href="https://www.facebook.com/zhang.alobe" target="_blank">
-          <i class="fab fa-facebook"></i>
-        </a>
-      
-    
+    </div>
+    <div class="site-description">
+      落李花飞显此景，漾文鱼跃衬远波
+    </div>
+    <div class="site-footer">
+      All rights reserved @Alobe
+    </div>
   </div>
 </div>
 
-      
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              ant design 动态导入的注意事项
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2018-12-20 ·
-              </time>
-              
-                <a href="https://alobe.github.io//tag/A5nUi1rA5" class="post-tags">
-                  # React
-                </a>
-              
-                <a href="https://alobe.github.io//tag/bmSM67Iq9" class="post-tags">
-                  # Antd
-                </a>
-              
-                <a href="https://alobe.github.io//tag/pQSOOMj5i" class="post-tags">
-                  # Webpack
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">ant design 动态导入的注意事项</h2>
+            <div class="post-date">2018-12-20</div>
             
-              <div class="post-feature-image" style="background-image: url('http://img.yang16.com/2017/12/29/ant3.jpg')">
+              <div class="feature-container" style="background-image: url('http://img.yang16.com/2017/12/29/ant3.jpg')">
               </div>
             
             <div class="post-content">
@@ -128,31 +115,87 @@
 </ul>
 
             </div>
-          </article>
+            
+              <div class="tag-container">
+                
+                  <a href="https://alobe.github.io//tag/A5nUi1rA5" class="tag">
+                    React
+                  </a>
+                
+                  <a href="https://alobe.github.io//tag/bmSM67Iq9" class="tag">
+                    Antd
+                  </a>
+                
+                  <a href="https://alobe.github.io//tag/pQSOOMj5i" class="tag">
+                    Webpack
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
+                  <h3 class="post-title">
+                    常用函数的简易实现以及相关知识点
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
         </div>
-    
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
-              <h3 class="post-title">
-                常用函数的简易实现以及相关知识点
-              </h3>
-            </a>
-          </div>  
-        
-
-        
-    
-        <div class="site-footer">
-  All rights reserved @Alobe
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
       </div>
     </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'alobe lerene',
+      apikey: 'Is7n4QbwyZRQREYxJRwG6rYmr5D11qZmYjbr5UXPW9IAKv4EdT1ypHdVEuV45sKz',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
   </body>
 </html>

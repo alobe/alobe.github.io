@@ -1,109 +1,168 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
-
+<head>
+  <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
 <title>this关键字探究 | Alobef</title>
-<meta name="description" content="落李花飞显此景，漾文鱼跃衬远波">
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559300772389">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css" type='text/css' media='all'>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559300720018">
-<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
-
-
-  
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-  </head>
-  <body>
-    <div id="app" class="main">
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://alobe.github.io/">
-        <img src="https://alobe.github.io//images/avatar.png?v=1559300720018" class="site-logo">
-        <h1 class="site-title">Alobef</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+
+</head>
+<body class="home blog ct-body standard">
+<div id="overflow-container" class="overflow-container">
+  <a class="skip-content" href="#main">Skip to content</a>
+  <header id="site-header" class="site-header" role="banner">
+    <div class='top-navigation top-navigation-important'>
+        <div class='container'>
+            <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+                <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+                <div class="menu">
+                    <ul id="menu-secondary-items" class="menu-secondary-items">
+                        
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/QCAr297g2">js</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/H6B9GeCeb">书籍阅读</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/pQSOOMj5i">Webpack</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/hXgyCNFyf">Mysql</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/A5nUi1rA5">React</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/bmSM67Iq9">Antd</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/T2mo8Hrl2">VS Code</a>
+                        </li>
+                            
+                        
+                    </ul>
+                </div>
+            </div>
+            <ul class="social-media-icons">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+
+    <div class="container">
+        <div id="title-info" class="title-info">
+            <div id='site-title' class='site-title'>
+                <a href="/https://alobe.github.io/">  Alobef </a>
+            </div>
+        </div>
+        <button id="toggle-navigation" class="toggle-navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+        <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+            <p class="site-description">落李花飞显此景，漾文鱼跃衬远波</p>
+            <div class="menu">
+                <ul id="menu-primary-items" class="menu-primary-items">
+                     
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/">首页</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/archives">归档</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/tags">标签</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/post/about">关于</a>
+                            </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      落李花飞显此景，漾文鱼跃衬远波
-    </div>
-    <div class="site-footer">
-      All rights reserved @Alobe
-    </div>
-  </div>
-</div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">this关键字探究</h2>
-            <div class="post-date">2018-08-20</div>
-            
-              <div class="feature-container" style="background-image: url('data:image/png;base64,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')">
-              </div>
-            
-            <div class="post-content">
+</header>
+
+  <div id="main" class="main" role="main">
+    <div id="loop-container" class="loop-container">
+      <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+        
+          <div class='featured-image lazy lazy-bg-image' data-background="data:image/png;base64,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">
+          </div>
+        
+
+        <div class="entry-meta">
+          <span class="date">· 2018-08-20 ·</span> <span> / </span>
+          <span class="author">
+            <a href="https://alobe.github.io/" title="" rel="author"> All rights reserved @Alobe</a>
+          </span>
+          
+            <span class="category">
+                    <span> / </span>
+                    <a href="https://alobe.github.io//tag/QCAr297g2">js</a>
+                </span>
+          
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'>this关键字探究</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
               <p>js作用域嵌套</p>
 <blockquote>
 <p>当一个块或函数嵌套在另一个块或函数中时，就发生了作用域的嵌套，进而形成了一条作用域链。因此，在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量， 或抵达最外层的作用域(也就是全局作用域)为止。</p>
@@ -150,80 +209,150 @@
 <p>在使用箭头函数（而不是手动 bind）的情况下，每次使用组件时都会创建一个全新的函数，这会对应用程序的性能和内存使用产生负面影响。</p>
 </blockquote>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://alobe.github.io//tag/QCAr297g2" class="tag">
-                    js
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://alobe.github.io//post/vscode_shortcut">
-                  <h3 class="post-title">
-                    vs code快捷键相关
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
+            </article>
           </div>
-
+          <div class='entry-meta-bottom'>
+            <div class="entry-categories">
+              <p>
+                <span>Categories</span>
+                
+                  
+                    
+                  <a href="https://alobe.github.io//tag/QCAr297g2" title="View all posts in js">js</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/H6B9GeCeb" title="View all posts in 书籍阅读">书籍阅读</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/pQSOOMj5i" title="View all posts in Webpack">Webpack</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/hXgyCNFyf" title="View all posts in Mysql">Mysql</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/A5nUi1rA5" title="View all posts in React">React</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/bmSM67Iq9" title="View all posts in Antd">Antd</a>
+                    
+                    
+                    
+                  <a href="https://alobe.github.io//tag/T2mo8Hrl2" title="View all posts in VS Code">VS Code</a>
+                    
+                    
+                <!--<a href="/blog/categories/github" title="View all posts in Github">Github</a>
+                <a href="/blog/categories/ssh" title="View all posts in SSH">SSH</a>
+                <a href="/blog/categories/apidoc" title="View all posts in apidoc">apidoc</a>
+                <a href="/blog/categories/code" title="View all posts in code">code</a>
+                <a href="/blog/categories/markdown" title="View all posts in markdown">markdown</a>
+                <a href="/blog/categories/snap" title="View all posts in snap">snap</a>
+                <a href="/blog/categories/snap-store" title="View all posts in snap store">snap store</a>-->
+              </p>
+            </div>
+            <div class="entry-tags">
+              <p><span>Tags</span>
+              </p>
+            </div>
+          </div>
+          <div class="author-meta">
+            <div class="author">
+              <img alt='' src="https://alobe.github.io//images/avatar.png?v=1559300772389" class='avatar avatar-72 photo' height='72' width='72'>
+              <span>WRITTEN BY: &nbsp;&nbsp;&nbsp;<a href='https://alobe.github.io/'>Alobef</a> </span>
+            </div>
+            <div class="bio">
+              <p>Alobef</p>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+            </div>
+          </div>
         </div>
+          
+            <nav class="navigation pagination" role="navigation">
+              <h2 class="screen-reader-text">Posts navigation</h2>
+              <div class="nav-links">
+                <a class="next page-numbers" href="https://alobe.github.io//post/vscode_shortcut">下一篇->vs code快捷键相关</a>
+              </div>
+            </nav>
+          
       </div>
-    </div>
+      <section id="comments" class="comments">
+        
+          
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
 
-<script type="application/javascript">
+<div id="disqus_thread"></div>
 
-AOS.init();
+<script>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+var options = {
+  shortname: 'alobe lerene',
+  apikey: 'Is7n4QbwyZRQREYxJRwG6rYmr5D11qZmYjbr5UXPW9IAKv4EdT1ypHdVEuV45sKz',
+}
+if ('https://disqus.skk.moe/disqus/') {
+  options.api = 'https://disqus.skk.moe/disqus/'
+}
+var dsqjs = new DisqusJS(options)
 
 </script>
 
+          
+        
+      </section>
+    </div>
+  </div>
 
-  
-  
-
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
-
-    var options = {
-      shortname: 'alobe lerene',
-      apikey: 'Is7n4QbwyZRQREYxJRwG6rYmr5D11qZmYjbr5UXPW9IAKv4EdT1ypHdVEuV45sKz',
-    }
-    if ('https://disqus.skk.moe/disqus/') {
-      options.api = 'https://disqus.skk.moe/disqus/'
-    }
-    var dsqjs = new DisqusJS(options)
-
-    </script>
-  
-
-
-
-
-  </body>
+  <footer id="site-footer" class="site-footer" role="contentinfo">
+    <h1>
+        <a href="https://alobe.github.io/"> Alobef </a>
+    </h1>
+    <p class="site-description">落李花飞显此景，漾文鱼跃衬远波</p>
+    <div id="menu-footer" class="menu-container menu-footer" role="navigation">
+        <div class="menu">
+            <ul id="menu-footer-items" class="menu-footer-items">
+            </ul>
+        </div>
+    </div>
+    <ul class="social-media-icons">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </ul>
+    <div class="design-credit">
+        <p>All rights reserved @Alobe</p>
+    </div>
+</footer>
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+<script src="https://alobe.github.io//media/scripts/lib/jquery.min.js"></script>
+<script src="https://alobe.github.io//media/scripts/lib/jquerymigrate.js"></script>
+<script src="https://alobe.github.io//media/scripts/lib/production.min.js"></script>
+</div>
+</body>
 </html>
+

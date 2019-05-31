@@ -1,268 +1,344 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<title>Alobef</title>
+<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559300772389">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://alobe.github.io//styles/main.css" type='text/css' media='all'>
 
-<title>文章归档 | Alobef</title>
-<meta name="description" content="落李花飞显此景，漾文鱼跃衬远波">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alobe.github.io//favicon.ico?v=1559300720018">
-<link rel="stylesheet" href="https://alobe.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://alobe.github.io/">
-        <img src="https://alobe.github.io//images/avatar.png?v=1559300720018" class="site-logo">
-        <h1 class="site-title">Alobef</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      落李花飞显此景，漾文鱼跃衬远波
-    </div>
-    <div class="site-footer">
-      All rights reserved @Alobe
-    </div>
-  </div>
-</div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
-              
+</head>
+    <body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+        <div id="overflow-container" class="overflow-container">
+            <a class="skip-content" href="#main">Skip to content</a>
+                <header id="site-header" class="site-header" role="banner">
+    <div class='top-navigation top-navigation-important'>
+        <div class='container'>
+            <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+                <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fa fa-plus"></i></button>
+                <div class="menu">
+                    <ul id="menu-secondary-items" class="menu-secondary-items">
+                        
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/QCAr297g2">js</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/H6B9GeCeb">书籍阅读</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/pQSOOMj5i">Webpack</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/hXgyCNFyf">Mysql</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/A5nUi1rA5">React</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/bmSM67Iq9">Antd</a>
+                        </li>
+                            
+                        
+                            
+                        <li id="menu-item" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item">
+                            <a href="https://alobe.github.io//tag/T2mo8Hrl2">VS Code</a>
+                        </li>
+                            
+                        
+                    </ul>
+                </div>
+            </div>
+            <ul class="social-media-icons">
                 
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/k-sum-wen-ti">
-                      <h2 class="post-title">
-                        K-SUM问题
-                      </h2>
-                    </a>
-                  </article>
+                    
                 
-              
+                    
                 
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/2-sum-wen-ti">
-                      <h2 class="post-title">
-                        2-sum问题
-                      </h2>
-                    </a>
-                  </article>
+                    
                 
-              
+                    
                 
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti">
-                      <h2 class="post-title">
-                        n级阶梯问题
-                      </h2>
-                    </a>
-                  </article>
+                    
                 
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/bu-ke-pai-wen-ti">
-                      <h2 class="post-title">
-                        扑克牌问题
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/javascript_core_tech_learn">
-                      <h2 class="post-title">
-                        《JavaScript核心技术开发解密》知识点记录
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/webpack4_compile_es6">
-                      <h2 class="post-title">
-                        针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/Mysql_valiables_vary">
-                      <h2 class="post-title">
-                        修改MySQL全局变量常见场景和几种解决方案
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-            
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2018</h2>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/ant-design_dynamic_import">
-                      <h2 class="post-title">
-                        ant design 动态导入的注意事项
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/call_apply_instanceof_etc">
-                      <h2 class="post-title">
-                        常用函数的简易实现以及相关知识点
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/this_refer">
-                      <h2 class="post-title">
-                        this关键字探究
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://alobe.github.io//post/vscode_shortcut">
-                      <h2 class="post-title">
-                        vs code快捷键相关
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
-
-          <div class="pagination-container">
-  
-  
-</div>
-
+            </ul>
         </div>
-      </div>
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <div class="container">
+        <div id="title-info" class="title-info">
+            <div id='site-title' class='site-title'>
+                <a href="/https://alobe.github.io/">  Alobef </a>
+            </div>
+        </div>
+        <button id="toggle-navigation" class="toggle-navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+        <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+            <p class="site-description">落李花飞显此景，漾文鱼跃衬远波</p>
+            <div class="menu">
+                <ul id="menu-primary-items" class="menu-primary-items">
+                     
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/">首页</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/archives">归档</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/tags">标签</a>
+                            </li>
+                        
+                    
+                        
+                            <li id="menu-item" class='menu-item menu-item-type-post_type menu-item-object-page current-menu-item current_page_item'>
+                                <a href="/post/about">关于</a>
+                            </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
 
-<script type="application/javascript">
 
-AOS.init();
+</header>
 
-hljs.initHighlightingOnLoad()
+                
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+<div class="main">
+    <div class="main-content">
+        <div id="timeline-container">
+            <div id="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+    <!--                    <img src="assets/images/star.svg" alt="2019">-->
+                        <span>2019</span>
+                    </div>
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> K-SUM问题</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/k-sum-wen-ti" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 2-sum问题</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/2-sum-wen-ti" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> n级阶梯问题</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/n-ji-jie-ti-wen-ti" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 扑克牌问题</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/bu-ke-pai-wen-ti" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 《JavaScript核心技术开发解密》知识点记录</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/javascript_core_tech_learn" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 针对webpack v4 版本的uglifyjs-webpack-plugin中不能编译es6代码的处理方法</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/webpack4_compile_es6" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 修改MySQL全局变量常见场景和几种解决方案</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/Mysql_valiables_vary" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+                 
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+    <!--                    <img src="assets/images/star.svg" alt="2018">-->
+                        <span>2018</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> ant design 动态导入的注意事项</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/ant-design_dynamic_import" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> 常用函数的简易实现以及相关知识点</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/call_apply_instanceof_etc" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> this关键字探究</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/this_refer" class="btn">review</a>
+                        </div>
+                    
+                    
+                    
+                        <div class="timeline-content">
+                            <h3 class="timeline-title"> vs code快捷键相关</h3>
+                            <p>
+                                
+                            </p>
+                            <a href="https://alobe.github.io//post/vscode_shortcut" class="btn">review</a>
+                        </div>
+                    
+                    
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+</div>
 
+                <nav class="navigation pagination" role="navigation">
+    <h2 class="screen-reader-text">Posts navigation</h2>
+    <div class="nav-links">
+        
+        
+    </div>
+</nav>
+
+                <footer id="site-footer" class="site-footer" role="contentinfo">
+    <h1>
+        <a href="https://alobe.github.io/"> Alobef </a>
+    </h1>
+    <p class="site-description">落李花飞显此景，漾文鱼跃衬远波</p>
+    <div id="menu-footer" class="menu-container menu-footer" role="navigation">
+        <div class="menu">
+            <ul id="menu-footer-items" class="menu-footer-items">
+            </ul>
+        </div>
+    </div>
+    <ul class="social-media-icons">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </ul>
+    <div class="design-credit">
+        <p>All rights reserved @Alobe</p>
+    </div>
+</footer>
+<script>
+    hljs.initHighlightingOnLoad()
 </script>
-
-
-
-
-  </body>
+<script src="https://alobe.github.io//media/scripts/lib/jquery.min.js"></script>
+<script src="https://alobe.github.io//media/scripts/lib/jquerymigrate.js"></script>
+<script src="https://alobe.github.io//media/scripts/lib/production.min.js"></script>
+        </div>
+    </body>
 </html>
